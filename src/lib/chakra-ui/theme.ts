@@ -22,6 +22,16 @@ const chakraUiCustomTheme = extendTheme({
             fontWeight: 500,
             fontSize: "1.4rem",
             lineHeight: "1.6rem",
+        },
+        "xl-text": {
+            fontWeight: 700,
+            fontSize: "2.8rem",
+            lineHeight: "3.8rem",
+        },
+        "2xl-text": {
+            fontWeight: 700,
+            fontSize: "3.6rem",
+            lineHeight: "4.8rem",
         }
     },
     colors: {

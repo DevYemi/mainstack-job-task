@@ -1,17 +1,13 @@
 import React from "react";
 import { IconTypes } from "./types";
 
-interface propTypes extends IconTypes {
-    isGray?: boolean
-}
 
 function MediaKitIcon({
     width = 24,
     height = 24,
     color = "",
     inheritColor = false,
-    isGray = false,
-}: propTypes) {
+}: IconTypes) {
     return (
 
         <svg
@@ -23,16 +19,16 @@ function MediaKitIcon({
             <path d="M21.3 21.445H2.7C2.31 21.445 2 21.135 2 20.745V8.47496C2 8.08496 2.31 7.77496 2.7 7.77496H21.3C21.69 7.77496 22 8.08496 22 8.47496V20.745C22 21.135 21.69 21.445 21.3 21.445Z" fill="url(#paint2_linear_9860_1459)" />
             <defs>
                 <linearGradient id="paint0_linear_9860_1459" x1="4.27548" y1="7.14244" x2="15.8365" y2="7.14244" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={isGray ? "#999999" : "#FCFF1C"} />
-                    <stop offset="1" stopColor={isGray ? "#999999" : "#FF9D0A"} />
+                    <stop stopColor="#FCFF1C" />
+                    <stop offset="1" stopColor="#FF9D0A" />
                 </linearGradient>
                 <linearGradient id="paint1_linear_9860_1459" x1="2" y1="10.0223" x2="12.293" y2="10.0223" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={isGray ? "#777777" : "#E7CFFF"} />
-                    <stop offset="1" stopColor={isGray ? "#777777" : "#870FFF"} />
+                    <stop stopColor="#E7CFFF" />
+                    <stop offset="1" stopColor="#870FFF" />
                 </linearGradient>
                 <linearGradient id="paint2_linear_9860_1459" x1="2" y1="14.6143" x2="22" y2="14.6143" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={isGray ? "#555555" : "#03FFE5"} />
-                    <stop offset="1" stopColor={isGray ? "#555555" : "#14B348"} />
+                    <stop stopColor="#03FFE5" />
+                    <stop offset="1" stopColor="#14B348" />
                 </linearGradient>
             </defs>
         </svg>

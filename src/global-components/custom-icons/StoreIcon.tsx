@@ -1,17 +1,13 @@
 import React from "react";
 import { IconTypes } from "./types";
 
-interface propTypes extends IconTypes {
-    isGray?: boolean
-}
 
 function StoreIcon({
     width = 24,
     height = 24,
     color = "",
     inheritColor = false,
-    isGray
-}: propTypes) {
+}: IconTypes) {
     return (
 
         <svg
@@ -25,16 +21,16 @@ function StoreIcon({
             <path d="M3.54 13.58L16.41 3.07C16.87 2.69 16.61 1.94 16.01 1.94H3.14C2.79 1.94 2.5 2.22 2.5 2.58V13.09C2.5 13.62 3.12 13.92 3.54 13.58Z" fill="url(#paint2_linear_9860_1453)" />
             <defs>
                 <linearGradient id="paint0_linear_9860_1453" x1="4.34182" y1="14.4112" x2="19.6375" y2="14.4112" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={isGray ? "#999999" : "#FF9868"} />
-                    <stop offset="1" stopColor={isGray ? "#999999" : "#FF5403"} />
+                    <stop stopColor={"#FF9868"} />
+                    <stop offset="1" stopColor={"#FF5403"} />
                 </linearGradient>
                 <linearGradient id="paint1_linear_9860_1453" x1="7.35294" y1="9.97921" x2="21.5002" y2="9.97921" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={isGray ? "#777777" : "#03FFE5"} />
-                    <stop offset="1" stopColor={isGray ? "#777777" : "#14B348"} />
+                    <stop stopColor={"#03FFE5"} />
+                    <stop offset="1" stopColor={"#14B348"} />
                 </linearGradient>
                 <linearGradient id="paint2_linear_9860_1453" x1="2.5" y1="7.8319" x2="16.6472" y2="7.8319" gradientUnits="userSpaceOnUse">
-                    <stop stopColor={isGray ? "#555555" : "#FCFF1C"} />
-                    <stop offset="1" stopColor={isGray ? "#555555" : "#FF9D0A"} />
+                    <stop stopColor={"#FCFF1C"} />
+                    <stop offset="1" stopColor={"#FF9D0A"} />
                 </linearGradient>
             </defs>
         </svg>

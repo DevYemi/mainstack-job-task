@@ -1,17 +1,13 @@
 import React from "react";
 import { IconTypes } from "./types";
 
-interface propTypes extends IconTypes {
-  isGray?: boolean
-}
 
 function LinkInBioIcon({
   width = 24,
   height = 24,
   color = "",
   inheritColor = false,
-  isGray = false,
-}: propTypes) {
+}: IconTypes) {
   return (
 
     <svg
@@ -25,16 +21,16 @@ function LinkInBioIcon({
       <path d="M5.4575 18.6L5.2075 18.99C5.1475 19.09 5.0275 19.12 4.9375 19.06L3.6575 18.3C3.5575 18.24 3.5275 18.12 3.5875 18.03L3.8375 17.64C3.8975 17.54 3.8675 17.42 3.7675 17.37L3.0975 16.98C2.9675 16.9 2.9675 16.71 3.0975 16.63L6.4375 14.75C6.5775 14.67 6.7375 14.77 6.7375 14.93L6.6975 18.77C6.6975 18.92 6.5275 19.02 6.3975 18.94L5.7275 18.55C5.6475 18.47 5.5175 18.51 5.4575 18.6Z" fill="url(#paint2_linear_9860_1448)" />
       <defs>
         <linearGradient id="paint0_linear_9860_1448" x1="2.89818" y1="8.44539" x2="18.1055" y2="8.44539" gradientUnits="userSpaceOnUse">
-          <stop stopColor={isGray ? "#999999" : "#870FFF"} />
-          <stop offset="1" stopColor={isGray ? "#999999" : "#E7CFFF"} />
+          <stop stopColor={"#870FFF"} />
+          <stop offset="1" stopColor={"#E7CFFF"} />
         </linearGradient>
         <linearGradient id="paint1_linear_9860_1448" x1="7.16915" y1="12.4546" x2="22.3765" y2="12.4546" gradientUnits="userSpaceOnUse">
-          <stop stopColor={isGray ? "#777777" : "#FFDDCD"} />
-          <stop offset="1" stopColor={isGray ? "#777777" : "#FF5403"} />
+          <stop stopColor={"#FFDDCD"} />
+          <stop offset="1" stopColor={"#FF5403"} />
         </linearGradient>
         <linearGradient id="paint2_linear_9860_1448" x1="3.66394" y1="15.6385" x2="7.30948" y2="17.8092" gradientUnits="userSpaceOnUse">
-          <stop stopColor={isGray ? "#555555" : "#FCFF1C"} />
-          <stop offset="1" stopColor={isGray ? "#555555" : "#FF9D0A"} />
+          <stop stopColor={"#FCFF1C"} />
+          <stop offset="1" stopColor={"#FF9D0A"} />
         </linearGradient>
       </defs>
     </svg>

@@ -1,6 +1,6 @@
 'use client'
-import React, { useState } from 'react';
-import { Avatar, chakra } from '@chakra-ui/react'
+import React from 'react';
+import { chakra } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/next-js';
 import { Icon } from '@chakra-ui/react'
 import { GrHomeRounded } from "react-icons/gr";
@@ -26,8 +26,9 @@ function FloatingHeaderSection() {
             borderRadius={"10rem"}
             m={"1.6rem"}
             shadow={"md"}
+            zIndex={99999}
         >
-            <chakra.div position={"relative"} w={"3.6rem"} h={"3.6rem"}>
+            <chakra.div position={"relative"} w={"3.6rem"} h={"3.6rem"} minWidth={"3.6rem"}>
                 <Image
                     alt='Mainstack-Logo'
                     src={"/imgs/mainstack-logo.webp"}
