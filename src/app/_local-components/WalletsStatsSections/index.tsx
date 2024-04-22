@@ -5,7 +5,7 @@ import { CiCircleInfo } from "react-icons/ci";
 import { AreaChart, Area, Tooltip, ResponsiveContainer, XAxis } from "recharts";
 import { GoDotFill } from "react-icons/go";
 
-function TransactionsAnalyticsSections() {
+function WalletsStatsSections() {
     // Create a dummy Data for the graph
     const customData = useMemo(() => {
         const dataCount = 10;
@@ -110,4 +110,4 @@ function TransactionsAnalyticsSections() {
     )
 }
 
-export default TransactionsAnalyticsSections
+export default WalletsStatsSections

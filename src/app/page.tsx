@@ -1,6 +1,6 @@
 import FloatingAsideNav from "./_local-components/FloatingAsideNav";
 import FloatingHeaderSection from "./_local-components/FloatingHeaderSection";
-import TransactionsAnalyticsSections from "./_local-components/TransactionsAnalyticsSections";
+import WalletsStatsSections from "./_local-components/WalletsStatsSections";
 
 
 export default function HomePage() {
@@ -18,7 +18,7 @@ export default function HomePage() {
         marginTop: "6.5rem",
         padding: "1.6rem"
       }}>
-        <TransactionsAnalyticsSections />
+        <WalletsStatsSections />
       </main>
     </div>
   );
