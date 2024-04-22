@@ -1,9 +1,10 @@
+import FloatingHeaderSection from "./_local-components/FloatingHeaderSection";
 
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="">
-      Hello World
+      <FloatingHeaderSection />
     </main>
   );
 }
