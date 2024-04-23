@@ -15,8 +15,7 @@ export default function HomePage() {
       <FloatingHeaderSection />
       <main style={{
         maxWidth: "115.9rem",
-        margin: "auto",
-        marginTop: "6.5rem",
+        margin: "6.5rem auto",
         padding: "1.6rem",
       }}>
         <WalletsStatsSections />

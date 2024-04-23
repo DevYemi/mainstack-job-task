@@ -8,7 +8,7 @@ import {
     PopoverBody,
 } from '@chakra-ui/react'
 import { TbApps } from "react-icons/tb";
-import NavLink from '@/global-components/chakra-factory/NavLink';
+import NavLink from '@/global-components/NavLink';
 import { IoIosArrowForward } from "react-icons/io";
 import { InvoicingIcon, LinkInBioIcon, MediaKitIcon, StoreIcon } from '@/global-components/custom-icons';
 

@@ -1,15 +1,24 @@
 
 import { extendTheme, position } from "@chakra-ui/react"
 import { buttonTheme } from "./components/button"
+import { inputTheme } from "./components/input"
+import { reactDayPickerTheme } from "./components/reactDayPicker"
+import { checkboxTheme } from "./components/checkbox"
 
 const chakraUiCustomTheme = extendTheme({
-    components: { Button: buttonTheme },
+    components: {
+        Button: buttonTheme,
+        Input: inputTheme,
+        Checkbox: checkboxTheme,
+        ReactDayPicker: reactDayPickerTheme
+    },
     styles: {
         global: {
             'html': {
                 fontSize: "62.5%"
             },
             'body': {
+                "--chakra-shadows-outline": "#131316",
                 fontSize: "1.6rem",
             }
         },

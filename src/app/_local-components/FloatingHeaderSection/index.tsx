@@ -4,7 +4,7 @@ import { chakra } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/next-js';
 import { Icon } from '@chakra-ui/react'
 import { GrHomeRounded } from "react-icons/gr";
-import NavLink from "@/global-components/chakra-factory/NavLink";
+import NavLink from "@/global-components/NavLink";
 import { MdOutlineAnalytics, MdOutlinePeopleAlt } from "react-icons/md";
 import { FaMoneyBills } from "react-icons/fa6";
 import { AiOutlineBell } from "react-icons/ai";

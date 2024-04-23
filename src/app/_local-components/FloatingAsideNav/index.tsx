@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Icon, chakra, Tooltip } from '@chakra-ui/react'
-import NavLink from '@/global-components/chakra-factory/NavLink';
+import NavLink from '@/global-components/NavLink';
 import { InvoicingIcon, LinkInBioIcon, MediaKitIcon, StoreIcon } from '@/global-components/custom-icons';
 
 function FloatingAsideNav() {
