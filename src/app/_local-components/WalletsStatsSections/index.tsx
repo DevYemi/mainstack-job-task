@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo } from 'react';
-import { Icon, chakra } from '@chakra-ui/react'
+import { Button, Icon, chakra } from '@chakra-ui/react'
 import { CiCircleInfo } from "react-icons/ci";
 import { AreaChart, Area, Tooltip, ResponsiveContainer, XAxis } from "recharts";
 import { GoDotFill } from "react-icons/go";
@@ -37,9 +37,9 @@ function WalletsStatsSections() {
                             USD 120,500.00
                         </chakra.h1>
                     </chakra.div>
-                    <chakra.button color={"white"} layerStyle={"base-text"} borderRadius={"10rem"} py={"1.4rem"} px={"5.2rem"} bg={"primary.300"}>
+                    <Button size={"_lg"} px={"5.2rem"}>
                         Withdraw
-                    </chakra.button>
+                    </Button>
                 </chakra.div>
                 <chakra.div flex={1} display={"flex"} flexDirection={"column"}>
                     <chakra.div flex={1} w={"100%"} height={"10rem"}>
@@ -60,7 +60,7 @@ function WalletsStatsSections() {
                         <chakra.div position={"relative"} color={"#DBDEE5"}>
                             <Icon transform={"translate(-50%, -45%)"} position={"absolute"} top={0} left={0} w={"1rem"} h={"1rem"} as={GoDotFill} />
                             <chakra.hr w="100%" height={"0.2rem"} />
-                            <Icon transform={"translate(30%, -70%)"} position={"absolute"} right={0} w={"1rem"} h={"1rem"} as={GoDotFill} />
+                            <Icon transform={"translate(30%, -82%)"} position={"absolute"} right={0} w={"1rem"} h={"1rem"} as={GoDotFill} />
                         </chakra.div>
                         <chakra.div color={"gray.400"} layerStyle={"xxs-text"} mt={"1.5rem"} display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                             <chakra.p>
@@ -82,28 +82,28 @@ function WalletsStatsSections() {
                         <chakra.p layerStyle={"xxs-text"}>Ledger Balance</chakra.p>
                         <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
                     </chakra.div>
-                    <Icon color={"#C4C4C4"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
+                    <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
                 <chakra.div display={"flex"} justifyContent={"space-between"}>
                     <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Total Payout</chakra.p>
                         <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
                     </chakra.div>
-                    <Icon color={"#C4C4C4"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
+                    <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
                 <chakra.div display={"flex"} justifyContent={"space-between"}>
                     <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Total Revenue</chakra.p>
                         <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
                     </chakra.div>
-                    <Icon color={"#C4C4C4"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
+                    <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
                 <chakra.div display={"flex"} justifyContent={"space-between"}>
                     <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Pending Payout</chakra.p>
                         <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
                     </chakra.div>
-                    <Icon color={"#C4C4C4"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
+                    <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
             </chakra.div>
         </chakra.section>

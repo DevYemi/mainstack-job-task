@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
-import { Icon, chakra } from '@chakra-ui/react'
+import { Icon, chakra, useDisclosure } from '@chakra-ui/react'
 import {
     Popover,
     PopoverTrigger,
@@ -13,13 +13,18 @@ import { IoIosArrowForward } from "react-icons/io";
 import { InvoicingIcon, LinkInBioIcon, MediaKitIcon, StoreIcon } from '@/global-components/custom-icons';
 
 function AppsPopoverBtnAndContent() {
-    const [isAppsOpen, setIsAppsOpen] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure()
     return (
-        <Popover placement="bottom-start" gutter={20} isOpen={isAppsOpen}>
+        <Popover
+            placement="bottom-start"
+            gutter={20}
+            isOpen={isOpen}
+            onClose={onClose}
+            onOpen={onOpen}>
             <PopoverTrigger>
                 <chakra.button
-                    onClick={() => setIsAppsOpen((prev) => !prev)}
-                    aria-expanded={isAppsOpen}
+                    onClick={onOpen}
+                    aria-expanded={isOpen}
                     display={"flex"}
                     color={"gray.400"}
                     alignItems={"center"}
@@ -46,7 +51,7 @@ function AppsPopoverBtnAndContent() {
                         </chakra.p>
                     </chakra.div>
                     <chakra.div
-                        display={isAppsOpen ? "flex" : "none"}
+                        display={isOpen ? "flex" : "none"}
                         alignItems={"center"}
                         gap={"0.8rem"}
                     >

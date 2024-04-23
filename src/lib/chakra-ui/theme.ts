@@ -1,14 +1,16 @@
 
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme, position } from "@chakra-ui/react"
+import { buttonTheme } from "./components/button"
 
 const chakraUiCustomTheme = extendTheme({
+    components: { Button: buttonTheme },
     styles: {
         global: {
             'html': {
                 fontSize: "62.5%"
             },
             'body': {
-                fontSize: "1.6rem"
+                fontSize: "1.6rem",
             }
         },
     },
@@ -22,6 +24,11 @@ const chakraUiCustomTheme = extendTheme({
             fontWeight: 500,
             fontSize: "1.4rem",
             lineHeight: "1.6rem",
+        },
+        "lg-text": {
+            fontWeight: 700,
+            fontSize: "2.4rem",
+            lineHeight: "3.2rem",
         },
         "xl-text": {
             fontWeight: 700,
@@ -41,6 +48,7 @@ const chakraUiCustomTheme = extendTheme({
         },
         "gray": {
             50: "#EFF1F6",
+            300: "#888F95",
             400: "#56616B"
         }
     }
