@@ -36,10 +36,6 @@ vi.mock("next/navigation");
 // ------- End -----------
 
 /* 
-Mocked Internal Modules and files (E.g In Utils or Lib);
-*/
-
-// ------- End -----------
 
 
 /* 
@@ -53,10 +49,6 @@ vi.stubGlobal(
     unobserve: vi.fn(),
   })),
 );
-vi.stubGlobal("location", {
-  ...window.location,
-  href: `${process.env.NEXT_PUBLIC_fetchBaseUrl}/${process.env.NEXT_PUBLIC_fetchBasePath}`,
-});
 vi.stubGlobal(
   "matchMedia",
   vi.fn((query) => ({

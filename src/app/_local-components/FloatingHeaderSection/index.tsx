@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import { chakra } from '@chakra-ui/react'
-import { Image } from '@chakra-ui/next-js';
 import { Icon } from '@chakra-ui/react'
 import { GrHomeRounded } from "react-icons/gr";
 import NavLink from "@/global-components/NavLink";
@@ -11,6 +10,7 @@ import { AiOutlineBell } from "react-icons/ai";
 import { BsChatLeftText } from "react-icons/bs";
 import AppsPopoverBtnAndContent from './AppsPopoverBtnAndContent';
 import ProfilePopoverBtnAndContent from './ProfilePopoverBtnAndContent';
+import Image from 'next/image';
 
 
 function FloatingHeaderSection() {
@@ -33,7 +33,11 @@ function FloatingHeaderSection() {
                 shadow={"md"}
                 borderRadius={"10rem"}
             >
-                <chakra.div position={"relative"} w={"3.6rem"} h={"3.6rem"} minWidth={"3.6rem"}>
+                <chakra.div
+                    position={"relative"}
+                    w={"3.6rem"}
+                    h={"3.6rem"}
+                    minWidth={"3.6rem"}>
                     <Image
                         alt='Mainstack-Logo'
                         src={"/imgs/mainstack-logo.webp"}

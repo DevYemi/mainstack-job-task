@@ -4,13 +4,23 @@ import TransactionsSection from "./_local-components/TransactionsSection";
 import WalletsStatsSections from "./_local-components/WalletsStatsSections";
 
 
-export default function HomePage() {
+/* 
+- Question: Why Inline Styles were used here ?.
+
+- Reason: using `<chaka.tag />` convention which enables you have an element that you can pass chakra ui props forces
+you to turn the component to where it's being used to a client component. Converting youe whole page.tsx file will make you lose the whole benefit of serverComponents
+
+So personalily i like keeping my layout and page file as server component and use modular client component when the need arise.
+*/
+export default async function HomePage() {
   return (
-    <div style={{
-      maxWidth: "144rem",
-      margin: "auto",
-      position: "relative",
-    }}>
+    <div
+      data-testid="homePage-testId"
+      style={{
+        maxWidth: "144rem",
+        margin: "auto",
+        position: "relative",
+      }}>
       <FloatingHeaderSection />
       <FloatingAsideNav />
       <main style={{

@@ -167,7 +167,7 @@ function FilterBtnDrawerWithContent() {
                             size={"_md"}
                             flex={"1"}
                             variant='outline'
-                            onClick={onClose}>
+                        >
                             Clear
                         </Button>
                         <Button

@@ -96,11 +96,6 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
                                 borderRadius: "100%",
                                 color: "white"
                             },
-                            today: {
-                                backgroundColor: theme.colors.primary["300"],
-                                borderRadius: "100%",
-                                color: "white"
-                            }
                         }}
 
                     />
