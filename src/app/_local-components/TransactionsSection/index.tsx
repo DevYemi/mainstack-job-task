@@ -5,13 +5,13 @@ import { FiDownload } from "react-icons/fi";
 import { GoArrowUpRight, GoArrowDownLeft } from "react-icons/go";
 import FilterBtnDrawerWithContent from './FilterBtnDrawerWithContent';
 import useSWR from 'swr';
-import { TransactionDataType } from '@/fetchEndpoints/transactions/types';
-import { fetchBaseUrl, parseClientError, swrFetcher } from '@/fetchEndpoints/_shared/clientBaseApi';
-import { _transactions } from '@/fetchEndpoints/transactions/path';
 import { nanoid } from 'nanoid';
 import { formatDigit } from '@/utils/formatInteger';
 import { format } from 'date-fns';
 import generateToast from '@/utils/generateToast';
+import { fetchBaseUrl, parseClientError, swrFetcher } from '@/fetchEndpoints/clientBaseApi';
+import { _transactions } from '@/fetchEndpoints/path';
+import { TransactionDataType } from '@/fetchEndpoints/types';
 
 function TransactionsSection() {
     const { isLoading, data, error } = useSWR<TransactionDataType[]>(

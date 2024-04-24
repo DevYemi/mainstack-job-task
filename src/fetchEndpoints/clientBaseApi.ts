@@ -1,4 +1,4 @@
-import { ErrorDataType, SuccessDataType } from "./types";
+
 
 
 export const fetchBaseUrl = "https://fe-task-api.mainstack.io"
@@ -74,7 +74,7 @@ export async function swrMutationFetcher(
 */
 export function parseClientError(e: any) {
   try {
-    const errorObject: ErrorDataType = JSON.parse(e?.message);
+    const errorObject = JSON.parse(e?.message);
 
     return errorObject;
   } catch (error: any) {

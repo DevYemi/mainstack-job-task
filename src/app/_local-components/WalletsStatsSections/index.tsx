@@ -1,13 +1,13 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Button, Icon, Skeleton, chakra } from '@chakra-ui/react'
 import { CiCircleInfo } from "react-icons/ci";
 import useSWR from 'swr';
-import { WalletDetailsDataType } from '@/fetchEndpoints/wallets/types';
-import { fetchBaseUrl, swrFetcher } from '@/fetchEndpoints/_shared/clientBaseApi';
-import { _wallet } from '@/fetchEndpoints/wallets/path';
 import { formatDigit } from '@/utils/formatInteger';
 import WalletGraphSection from './WalletGraphSection';
+import { fetchBaseUrl, swrFetcher } from '@/fetchEndpoints/clientBaseApi';
+import { _wallet } from '@/fetchEndpoints/path';
+import { WalletDetailsDataType } from '@/fetchEndpoints/types';
 
 function WalletsStatsSections() {
     const { isLoading, data, error } = useSWR<WalletDetailsDataType>(

@@ -15,11 +15,11 @@ import { GoBug } from "react-icons/go";
 import { MdOutlineSwitchAccount } from "react-icons/md";
 import { PiSignOut } from "react-icons/pi";
 import useSWR from 'swr';
-import { UserDetailsDataType } from '@/fetchEndpoints/user/types';
-import { fetchBaseUrl, parseClientError, swrFetcher } from '@/fetchEndpoints/_shared/clientBaseApi';
-import { _user } from '@/fetchEndpoints/user/path';
 import { SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 import generateToast from '@/utils/generateToast';
+import { fetchBaseUrl, parseClientError, swrFetcher } from '@/fetchEndpoints/clientBaseApi';
+import { _user } from '@/fetchEndpoints/path';
+import { UserDetailsDataType } from '@/fetchEndpoints/types';
 
 function ProfilePopoverBtnAndContent() {
     const { isLoading, data, error } = useSWR<UserDetailsDataType>(

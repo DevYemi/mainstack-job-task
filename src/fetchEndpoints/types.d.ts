@@ -1,5 +1,3 @@
-
-
 export interface TransactionDataType {
     amount: number,
     metadata: {
@@ -14,4 +12,18 @@ export interface TransactionDataType {
     status: string,
     type: string,
     date: string
+}
+
+export interface UserDetailsDataType {
+    first_name: string,
+    last_name: string,
+    email: string
+}
+
+export interface WalletDetailsDataType {
+    balance: number,
+    total_payout: number,
+    total_revenue: number,
+    pending_payout: number,
+    ledger_balance: number
 }
