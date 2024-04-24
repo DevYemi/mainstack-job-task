@@ -42,7 +42,7 @@ npm run test
 
 # Project Folder Architecture
 
-The entry point for this project is in the `/src`. The project uses a **Feature Based Architecture** whereby you have all the files of a particular feature, component or page colocated together in the same folder.
+The entry point for this project is in the `/src`. The project uses a **Feature Based Architecture** whereby you have all the files (tests, components, constant) of a particular feature, component or page colocated together in the same folder.
 
 > **Please Note:** Feature root folder mostly have a `index.ts` or `index.tsx` files that export the main components used by all other components.
 
