@@ -39,7 +39,7 @@ function ProfilePopoverBtnAndContent() {
     }
   }, [error]);
   return (
-    <Popover placement="bottom-start" gutter={20}>
+    <Popover strategy="fixed" placement="bottom-start" gutter={20}>
       <PopoverTrigger>
         <chakra.button
           data-testid="profilePopoverBtnTrigger-testid"
@@ -65,7 +65,11 @@ function ProfilePopoverBtnAndContent() {
           <Icon w={"2.4rem"} h={"2.4rem"} as={RxHamburgerMenu} />
         </chakra.button>
       </PopoverTrigger>
-      <PopoverContent borderRadius={"1.6rem"} shadow={"md"} w={"40rem"}>
+      <PopoverContent
+        borderRadius={"1.6rem"}
+        shadow={"md"}
+        w={{ base: "inherit", lg: "40rem" }}
+      >
         <PopoverBody
           data-testid="popoverBody-testid"
           display={"flex"}

@@ -29,14 +29,23 @@ function WalletsStatsSections() {
   }, [error]);
 
   return (
-    <chakra.section display={"flex"} gap={"12.4rem"}>
+    <chakra.section
+      display={"flex"}
+      flexDirection={{ base: "column", lg: "row" }}
+      gap={"12.4rem"}
+    >
       <chakra.div
         display={"flex"}
         gap={"4.8rem"}
         flexDirection={"column"}
         flex={1}
       >
-        <chakra.div display={"flex"} alignItems={"center"} gap={"6.4rem"}>
+        <chakra.div
+          flexWrap={"wrap"}
+          display={"flex"}
+          alignItems={"center"}
+          gap={"6.4rem"}
+        >
           <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
             <chakra.p color={"gray.400"} layerStyle={"base-text"}>
               Available Balance
@@ -48,7 +57,11 @@ function WalletsStatsSections() {
               isLoaded={!isLoading}
               rounded={"1rem"}
             >
-              <chakra.h1 color={"primary.300"} layerStyle={"2xl-text"}>
+              <chakra.h1
+                whiteSpace={"nowrap"}
+                color={"primary.300"}
+                layerStyle={"2xl-text"}
+              >
                 USD {formatDigit.format(data?.balance || 0)}
               </chakra.h1>
             </Skeleton>

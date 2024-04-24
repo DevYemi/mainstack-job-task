@@ -30,6 +30,13 @@ npm run test
 
 <br />
 <br />
+
+# Side-Notes
+
+> `chakra-ui` was the css framework used for styling in the project
+
+> Webpage App is mobile responsive too.
+
 <br />
 <br />
 
@@ -38,8 +45,6 @@ npm run test
 The entry point for this project is in the `/src`. The project uses a **Feature Based Architecture** whereby you have all the files of a particular feature, component or page colocated together in the same folder.
 
 > **Please Note:** Feature root folder mostly have a `index.ts` or `index.tsx` files that export the main components used by all other components.
-
-> **Please Note:** Chakra-ui was used for styling
 
 ## app dir
 
@@ -106,12 +111,3 @@ Two major files to take note of in this folder are `vitest-setUpFile.ts` and `te
 Contains reuseable chuncks of code that are used everywhere in the project.
 <br />
 <br />
-
-# Side-Notes
-
-> **_CI/CD Pipeline_** > <br />
-> A mini ci/cd pipeline was also implemented
->
-> - `prettier`: helps format files before they are committed. check docs [Here](https://prettier.io/docs/en/)
-> - `lint-staged`: Helps make sure only files that have changed since the last commit are formatted by `prettier`. check doc [Here](https://nextjs.org/docs/app/building-your-application/configuring/eslint#lint-staged).
-> - `husky`: Helps make to work with git hooks. E.g Running a script before a commit or push. So it helps run `lint-staged` before commit and runs tests before push.

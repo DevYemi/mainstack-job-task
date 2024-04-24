@@ -42,6 +42,7 @@ function TransactionsSection() {
     <chakra.section mt={"8.2rem"}>
       <chakra.div
         display={"flex"}
+        flexWrap={"wrap"}
         justifyContent={"space-between"}
         gap={"2.4rem"}
       >

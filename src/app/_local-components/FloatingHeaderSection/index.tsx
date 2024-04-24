@@ -26,6 +26,7 @@ function FloatingHeaderSection() {
         transform={"translateY(1.6rem)"}
         display={"flex"}
         alignItems={"center"}
+        justifyContent={{ base: "space-between", lg: "initial" }}
         bg={"white"}
         p={"1.2rem"}
         shadow={"md"}
@@ -42,7 +43,7 @@ function FloatingHeaderSection() {
 
         <chakra.nav
           flex={1}
-          display={"flex"}
+          display={{ base: "none", lg: "flex" }}
           alignItems={"center"}
           gap={"2rem"}
           justifyContent={"center"}
