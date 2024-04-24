@@ -82,6 +82,7 @@ function FilterBtnDrawerWithContent() {
     return (
         <>
             <Button
+                data-testid="filterBtnDrawerTrigger-testid"
                 onClick={onOpen}
                 ref={btnRef as any}
                 size={"_md"}
@@ -112,6 +113,7 @@ function FilterBtnDrawerWithContent() {
                         <DrawerCloseButton position={"static"} fontSize={"1.6rem"} />
                     </DrawerHeader>
                     <DrawerBody
+                        data-testid="drawerBody-testid"
                         display={"flex"}
                         flexDirection={"column"}
                         gap={"2.4rem"}

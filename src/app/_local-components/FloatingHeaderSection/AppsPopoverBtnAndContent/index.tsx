@@ -24,6 +24,7 @@ function AppsPopoverBtnAndContent() {
             onOpen={onOpen}>
             <PopoverTrigger>
                 <chakra.button
+                    data-testid="appsPopoverBtnTrigger-testid"
                     onClick={onOpen}
                     aria-expanded={isOpen}
                     display={"flex"}
@@ -70,6 +71,7 @@ function AppsPopoverBtnAndContent() {
                     flexDirection={"column"}
                     gap={"2.4rem"}
                     p={"2.4rem"}
+                    data-testid="popoverBody-testid"
                 >
                     <NavLink
                         href={"#"}

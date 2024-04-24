@@ -38,6 +38,7 @@ function ProfilePopoverBtnAndContent() {
         <Popover placement="bottom-start" gutter={20} >
             <PopoverTrigger>
                 <chakra.button
+                    data-testid="profilePopoverBtnTrigger-testid"
                     display={"flex"}
                     alignItems={"center"}
                     gap={"0.8rem"}
@@ -66,6 +67,7 @@ function ProfilePopoverBtnAndContent() {
             </PopoverTrigger>
             <PopoverContent borderRadius={"1.6rem"} shadow={"md"} w={"40rem"}>
                 <PopoverBody
+                    data-testid="popoverBody-testid"
                     display={"flex"}
                     flexDirection={"column"}
                     gap={"1.6rem"}

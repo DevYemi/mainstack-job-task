@@ -29,7 +29,6 @@ afterAll(() => {
 Mocked External Modules (In node_modules).
 Good to note that Mocked files are in the `__mocks__` in the root of the project
 */
-vi.mock("next-auth/react");
 vi.mock("server-only");
 vi.mock("recharts");
 vi.mock("next/navigation");
