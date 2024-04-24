@@ -111,7 +111,8 @@ function FilterBtnDrawerWithContent() {
         <DrawerContent
           px={"2.4rem"}
           py={"2rem"}
-          m={"1.2rem"}
+          mx={{ base: "0", lg: "1.2rem" }}
+          my={"1.2rem"}
           rounded={"2rem"}
           maxWidth={"45.6rem"}
         >
