@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Providers } from "@/global-components/providers";
 import degularFont from "@/lib/chakra-ui/font";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export const metadata: Metadata = {

@@ -10,6 +10,7 @@ function DateRangeInput({ label }: propTypes) {
     const ref = useRef<HTMLElement | undefined>(undefined)
     return (
         <chakra.div
+            data-testid="dateRangeInputWrapper"
             display={"flex"}
             flexDirection={"column"}
             gap={"1.2rem"}

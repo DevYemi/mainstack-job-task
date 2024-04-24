@@ -23,7 +23,7 @@ const NavLink = forwardRef(function NavLink({
             {...props}
             ref={ref}
             href={href}
-            aria-current={isActive ? 'page' : undefined}
+            aria-current={isActive ? 'page' : "false"}
         >
             {children}
         </Link>

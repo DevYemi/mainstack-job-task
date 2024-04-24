@@ -56,6 +56,7 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
         >
             <PopoverTrigger>
                 <chakra.div
+                    data-testid="calendaDateInputWrapper"
                     w={"100%"}
                     onClick={onOpen}
                     display={"flex"}
@@ -72,6 +73,7 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
                             id: htmlId,
                             placeholder: props.inputProps?.placeholder || "Pick a date",
                             value: inputValue,
+                            "data-testid": "calendaDateInputReadOnlyInput"
                         }}
                     />
                 </chakra.div>
@@ -79,6 +81,7 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
             <PopoverContent border={"none"} rounded={'1.685rem'} shadow={"md"} w={popOverContentWidth}>
                 <PopoverBody p={"3.4rem"} >
                     <NineTailsDayPicker
+                        data-testid="nineTailsDayPicker"
                         mode="single"
                         selected={selected}
                         sx={daypickerStyles}
@@ -89,6 +92,11 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
                         }}
                         modifiersStyles={{
                             selected: {
+                                backgroundColor: theme.colors.primary["300"],
+                                borderRadius: "100%",
+                                color: "white"
+                            },
+                            today: {
                                 backgroundColor: theme.colors.primary["300"],
                                 borderRadius: "100%",
                                 color: "white"

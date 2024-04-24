@@ -10,19 +10,8 @@ interface propTypes extends ComponentPropsWithRef<typeof ReadOnlyInput> {
 
 
 function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
-    // const [isOpen, setIsOpen] = useState(false)
     const { isOpen, onClose, onOpen } = useDisclosure()
     const htmlId = useId();
-    // const popoverRef = useRef<any>();
-    // useOutsideClick({
-    //     ref: popoverRef,
-    //     handler: () => { console.log("You clicked outside"); setIsOpen(false) }
-    // });
-
-
-    // const onOpen = () => setIsOpen(true)
-    // const onClose = () => setIsOpen(false)
-    // const onToggle = () => setIsOpen((prev) => !prev)
 
     const [checkedListValues, setCheckedListValues] = useState(() => {
         const store = [];
@@ -65,6 +54,7 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
         >
             <PopoverTrigger>
                 <chakra.div
+                    data-testid="selectByCheckboxInputWrapper"
                     w={"100%"}
                     // onClick={onOpen}
                     display={"flex"}
@@ -81,6 +71,7 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
                             id: htmlId,
                             placeholder: props.inputProps?.placeholder || "Select a value",
                             value: checkedListValues.join(", "),
+                            "data-testid": "selectByCheckboxInputReadOnlyInput"
                         }}
                     />
                 </chakra.div>
@@ -102,6 +93,7 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
                         outline: "none",
                         shadow: "none"
                     }}
+                    data-testid="checkboxGroupWrapper"
                 >
                     <CheckboxGroup defaultValue={checkedListValues}>
                         <Stack spacing={"0"} direction={"column"}>
