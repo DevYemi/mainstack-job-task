@@ -1,30 +1,20 @@
 'use client';
 import React, { useMemo } from 'react';
-import { Button, Icon, chakra } from '@chakra-ui/react'
+import { Button, Icon, Skeleton, chakra } from '@chakra-ui/react'
 import { CiCircleInfo } from "react-icons/ci";
-import { AreaChart, Area, Tooltip, ResponsiveContainer, XAxis } from "recharts";
-import { GoDotFill } from "react-icons/go";
+import useSWR from 'swr';
+import { WalletDetailsDataType } from '@/fetchEndpoints/wallets/types';
+import { fetchBaseUrl, swrFetcher } from '@/fetchEndpoints/_shared/clientBaseApi';
+import { _wallet } from '@/fetchEndpoints/wallets/path';
+import { formatDigit } from '@/utils/formatInteger';
+import WalletGraphSection from './WalletGraphSection';
 
 function WalletsStatsSections() {
-    // Create a dummy Data for the graph
-    const customData = useMemo(() => {
-        const dataCount = 10;
-        const store = [];
+    const { isLoading, data, error } = useSWR<WalletDetailsDataType>(
+        `${fetchBaseUrl}${_wallet}`,
+        swrFetcher
+    );
 
-        const getRandomFromRange = (min: number, max: number) => {
-            return Math.random() * (max - min) + min;
-        };
-
-        for (let i = 0; i < dataCount; i++) {
-            const storeData = { revenue: 100 };
-
-            storeData.revenue = getRandomFromRange(0, 5000);
-
-            store.push(storeData);
-        }
-
-        return store;
-    }, []);
     return (
         <chakra.section display={"flex"} gap={"12.4rem"}>
             <chakra.div display={"flex"} gap={"4.8rem"} flexDirection={"column"} flex={1}>
@@ -33,75 +23,53 @@ function WalletsStatsSections() {
                         <chakra.p color={"gray.400"} layerStyle={"base-text"}>
                             Available Balance
                         </chakra.p>
-                        <chakra.h1 color={"primary.300"} layerStyle={"2xl-text"}>
-                            USD 120,500.00
-                        </chakra.h1>
+                        <Skeleton speed={1} w={"100%"} maxW={"18rem"} isLoaded={!isLoading} rounded={"1rem"}>
+                            <chakra.h1 color={"primary.300"} layerStyle={"2xl-text"}>
+                                USD {formatDigit.format(data?.balance || 0)}
+                            </chakra.h1>
+                        </Skeleton>
                     </chakra.div>
-                    <Button size={"_lg"} px={"5.2rem"}>
+                    <Button isDisabled={isLoading} size={"_lg"} px={"5.2rem"}>
                         Withdraw
                     </Button>
                 </chakra.div>
-                <chakra.div flex={1} display={"flex"} flexDirection={"column"}>
-                    <chakra.div flex={1} w={"100%"} height={"10rem"}>
-                        <ResponsiveContainer width={"100%"} height={"100%"}>
-                            <AreaChart data={customData}>
-                                <Tooltip />
-                                <Area
-                                    type="bump"
-                                    strokeWidth={2}
-                                    dataKey="revenue"
-                                    stroke={"#FF5403"}
-                                    fill='transparent'
-                                />
-                            </AreaChart>
-                        </ResponsiveContainer>
-                    </chakra.div>
-                    <chakra.div>
-                        <chakra.div position={"relative"} color={"#DBDEE5"}>
-                            <Icon transform={"translate(-50%, -45%)"} position={"absolute"} top={0} left={0} w={"1rem"} h={"1rem"} as={GoDotFill} />
-                            <chakra.hr w="100%" height={"0.2rem"} />
-                            <Icon transform={"translate(30%, -82%)"} position={"absolute"} right={0} w={"1rem"} h={"1rem"} as={GoDotFill} />
-                        </chakra.div>
-                        <chakra.div color={"gray.400"} layerStyle={"xxs-text"} mt={"1.5rem"} display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                            <chakra.p>
-                                Apr 1 ,  2022
-                            </chakra.p>
-                            <chakra.p>
-                                Apr 30 ,  2022
-                            </chakra.p>
-                        </chakra.div>
-                    </chakra.div>
-                </chakra.div>
-
-
+                <WalletGraphSection />
 
             </chakra.div>
             <chakra.div flexBasis={"27.1rem"} display={"flex"} flexDirection={"column"} gap={"3.2rem"}>
-                <chakra.div display={"flex"} justifyContent={"space-between"}>
-                    <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
+                <chakra.div display={"flex"} gap={"1.6rem"} justifyContent={"space-between"}>
+                    <chakra.div flex={1} display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Ledger Balance</chakra.p>
-                        <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
+                        <Skeleton speed={1} isLoaded={!isLoading} h={"3rem"} w={""} rounded={"1rem"}>
+                            <chakra.h2 layerStyle={"xl-text"}>USD {formatDigit.format(data?.ledger_balance || 0)}</chakra.h2>
+                        </Skeleton>
                     </chakra.div>
                     <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
-                <chakra.div display={"flex"} justifyContent={"space-between"}>
-                    <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
+                <chakra.div display={"flex"} gap={"1.6rem"} justifyContent={"space-between"}>
+                    <chakra.div flex={1} display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Total Payout</chakra.p>
-                        <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
+                        <Skeleton speed={1} isLoaded={!isLoading} h={"3rem"} w={""} rounded={"1rem"}>
+                            <chakra.h2 layerStyle={"xl-text"}>USD {formatDigit.format(data?.total_payout || 0)}</chakra.h2>
+                        </Skeleton>
                     </chakra.div>
                     <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
-                <chakra.div display={"flex"} justifyContent={"space-between"}>
-                    <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
+                <chakra.div display={"flex"} gap={"1.6rem"} justifyContent={"space-between"}>
+                    <chakra.div flex={1} display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Total Revenue</chakra.p>
-                        <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
+                        <Skeleton speed={1} isLoaded={!isLoading} h={"3rem"} w={""} rounded={"1rem"}>
+                            <chakra.h2 layerStyle={"xl-text"}>USD {formatDigit.format(data?.total_revenue || 0)}</chakra.h2>
+                        </Skeleton>
                     </chakra.div>
                     <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>
-                <chakra.div display={"flex"} justifyContent={"space-between"}>
-                    <chakra.div display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
+                <chakra.div display={"flex"} gap={"1.6rem"} justifyContent={"space-between"}>
+                    <chakra.div flex={1} display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
                         <chakra.p layerStyle={"xxs-text"}>Pending Payout</chakra.p>
-                        <chakra.h2 layerStyle={"xl-text"}>USD 0.00</chakra.h2>
+                        <Skeleton speed={1} isLoaded={!isLoading} h={"3rem"} w={""} rounded={"1rem"}>
+                            <chakra.h2 layerStyle={"xl-text"}>USD {formatDigit.format(data?.pending_payout || 0)}</chakra.h2>
+                        </Skeleton>
                     </chakra.div>
                     <Icon color={"gray.300"} w={"2rem"} h={"2rem"} as={CiCircleInfo} />
                 </chakra.div>

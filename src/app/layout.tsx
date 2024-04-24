@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/global-components/providers";
 import degularFont from "@/lib/chakra-ui/font";
+import { ToastContainer } from "react-toastify";
 
 
 export const metadata: Metadata = {
@@ -18,6 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={degularFont.className}>
         <Providers>{children}</Providers>
+        <ToastContainer
+          draggable
+          pauseOnHover
+          position="top-right"
+          autoClose={5000}
+        />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoIosArrowDown } from "react-icons/io";
 import { Icon, chakra, useDisclosure } from '@chakra-ui/react'
 import {
@@ -13,7 +13,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { InvoicingIcon, LinkInBioIcon, MediaKitIcon, StoreIcon } from '@/global-components/custom-icons';
 
 function AppsPopoverBtnAndContent() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <Popover
             placement="bottom-start"

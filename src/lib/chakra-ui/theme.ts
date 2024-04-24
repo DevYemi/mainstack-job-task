@@ -4,12 +4,14 @@ import { buttonTheme } from "./components/button"
 import { inputTheme } from "./components/input"
 import { reactDayPickerTheme } from "./components/reactDayPicker"
 import { checkboxTheme } from "./components/checkbox"
+import { skeletonTheme } from "./components/skeleton"
 
 const chakraUiCustomTheme = extendTheme({
     components: {
         Button: buttonTheme,
         Input: inputTheme,
         Checkbox: checkboxTheme,
+        Skeleton: skeletonTheme,
         ReactDayPicker: reactDayPickerTheme
     },
     styles: {

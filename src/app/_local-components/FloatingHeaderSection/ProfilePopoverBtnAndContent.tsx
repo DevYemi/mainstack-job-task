@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Icon, chakra } from '@chakra-ui/react'
 import {
     Popover,
@@ -14,9 +14,26 @@ import { TbApps } from "react-icons/tb";
 import { GoBug } from "react-icons/go";
 import { MdOutlineSwitchAccount } from "react-icons/md";
 import { PiSignOut } from "react-icons/pi";
+import useSWR from 'swr';
+import { UserDetailsDataType } from '@/fetchEndpoints/user/types';
+import { fetchBaseUrl, parseClientError, swrFetcher } from '@/fetchEndpoints/_shared/clientBaseApi';
+import { _user } from '@/fetchEndpoints/user/path';
+import { SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import generateToast from '@/utils/generateToast';
 
 function ProfilePopoverBtnAndContent() {
+    const { isLoading, data, error } = useSWR<UserDetailsDataType>(
+        `${fetchBaseUrl}${_user}`,
+        swrFetcher
+    );
 
+    useEffect(() => {
+        // Display toast if there are any errors
+        if (error) {
+            const e = parseClientError(error);
+            generateToast(e)
+        }
+    }, [error])
     return (
         <Popover placement="bottom-start" gutter={20} >
             <PopoverTrigger>
@@ -30,12 +47,20 @@ function ProfilePopoverBtnAndContent() {
                     bg={"#EFF1F6"}
                     borderRadius={"10rem"}
                 >
-                    <Avatar
+                    <SkeletonCircle
                         w={"3.2rem"}
                         h={"3.2rem"}
-                        name='O J'
-                        bgGradient={'linear(to-r, #5C6670, #131316)'}
-                    />
+                        isLoaded={!isLoading}
+                    >
+                        <Avatar
+                            w={"3.2rem"}
+                            h={"3.2rem"}
+                            color={"white"}
+                            name={`${data?.first_name} ${data?.last_name}`}
+                            bgGradient={'linear(to-r, #5C6670, #131316)'}
+                        />
+                    </SkeletonCircle>
+
                     <Icon w={"2.4rem"} h={"2.4rem"} as={RxHamburgerMenu} />
                 </chakra.button>
             </PopoverTrigger>
@@ -53,25 +78,40 @@ function ProfilePopoverBtnAndContent() {
                         p={"0.8rem"}
                         color={"gray.400"}
                     >
-                        <Avatar
+                        <SkeletonCircle
                             w={"4.8rem"}
                             h={"4.8rem"}
-                            name='O J'
-                            bgGradient={'linear(to-r, #5C6670, #131316)'}
-                        />
-                        <chakra.div
-                            display={"flex"}
-                            flexDirection={"column"}
-                            gap="0.4rem"
-                            flex={1}
+                            isLoaded={!isLoading}
                         >
-                            <chakra.h5 color={"primary.300"} layerStyle={"base-text"}>
-                                Olivier Jones
-                            </chakra.h5>
-                            <chakra.p color={"gray.400"} layerStyle={"xxs-text"}>
-                                olivierjones@gmail.com
-                            </chakra.p>
-                        </chakra.div>
+                            <Avatar
+                                w={"4.8rem"}
+                                h={"4.8rem"}
+                                color={"white"}
+                                name={`${data?.first_name} ${data?.last_name}`}
+                                bgGradient={'linear(to-r, #5C6670, #131316)'}
+                            />
+                        </SkeletonCircle>
+                        <SkeletonText
+                            noOfLines={2}
+                            skeletonHeight={"1rem"}
+                            spacing={"0.8rem"}
+                            isLoaded={!isLoading}
+                        >
+                            <chakra.div
+                                display={"flex"}
+                                flexDirection={"column"}
+                                gap="0.4rem"
+                                flex={1}
+                            >
+                                <chakra.h5 color={"primary.300"} layerStyle={"base-text"}>
+                                    {`${data?.first_name} ${data?.last_name}`}
+                                </chakra.h5>
+                                <chakra.p color={"gray.400"} layerStyle={"xxs-text"}>
+                                    {data?.email}
+                                </chakra.p>
+                            </chakra.div>
+                        </SkeletonText>
+
                     </chakra.div>
                     <chakra.button
                         display={"flex"}

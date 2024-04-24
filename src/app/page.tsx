@@ -1,4 +1,3 @@
-
 import FloatingAsideNav from "./_local-components/FloatingAsideNav";
 import FloatingHeaderSection from "./_local-components/FloatingHeaderSection";
 import TransactionsSection from "./_local-components/TransactionsSection";
@@ -13,6 +12,7 @@ export default function HomePage() {
       position: "relative",
     }}>
       <FloatingHeaderSection />
+      <FloatingAsideNav />
       <main style={{
         maxWidth: "115.9rem",
         margin: "6.5rem auto",
@@ -20,7 +20,6 @@ export default function HomePage() {
       }}>
         <WalletsStatsSections />
         <TransactionsSection />
-        <FloatingAsideNav />
       </main>
     </div>
   );

@@ -9,7 +9,6 @@ import { MdOutlineAnalytics, MdOutlinePeopleAlt } from "react-icons/md";
 import { FaMoneyBills } from "react-icons/fa6";
 import { AiOutlineBell } from "react-icons/ai";
 import { BsChatLeftText } from "react-icons/bs";
-import { RxHamburgerMenu } from "react-icons/rx";
 import AppsPopoverBtnAndContent from './AppsPopoverBtnAndContent';
 import ProfilePopoverBtnAndContent from './ProfilePopoverBtnAndContent';
 

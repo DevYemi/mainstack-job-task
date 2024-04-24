@@ -6,10 +6,8 @@ import { InvoicingIcon, LinkInBioIcon, MediaKitIcon, StoreIcon } from '@/global-
 
 function FloatingAsideNav() {
 
-
-
     return (
-        <chakra.div bg="white" left={"1.6rem"} w="fit-content" zIndex={8} boxShadow={"lg"} p="0.4rem" borderRadius={"10rem"} position={"fixed"} top={"50%"} transform={"translate(0, -50%)"} display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
+        <chakra.div float={"left"} bg="white" left={"1.6rem"} w="fit-content" zIndex={8} boxShadow={"lg"} p="0.4rem" borderRadius={"10rem"} position={"sticky"} top={"50%"} transform={"translate(0, -50%)"} display={"flex"} flexDirection={"column"} gap={"0.8rem"}>
             <Tooltip fontSize={"1.2rem"} fontWeight={400} placement='right' bg={"primary.300"} p={"0.8rem"} borderRadius={"0.6rem"} hasArrow label="Link In Bio">
                 <NavLink
                     filter='grayscale(100%)'

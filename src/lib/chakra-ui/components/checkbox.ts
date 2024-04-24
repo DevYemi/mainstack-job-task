@@ -36,6 +36,10 @@ const baseStyle = definePartsStyle({
     container: {
         px: "1.4rem",
         py: "1.6rem",
+        _hover: {
+            backgroundColor: "gray.50",
+            rounded: "0.8rem"
+        }
     }
 })
 
