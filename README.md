@@ -50,7 +50,7 @@ This is a point of entry into NextJs route system [Read Docs](https://nextjs.org
 
 ## global-components dir
 
-Main key idea about this folder is **Reuseability**, folder contains chunks of components that are used all over the project route pages. In essence when you have a particular page section (React component) or Component that is displayed or used in more than 1 page and Component e.g Home Page and about Page then such a component needs to be extracted into this folder.
+Main key idea about this folder is **Reuseability**, folder contains chunks of components that are used all over the project route pages. In essence when you have a particular page section (React component) that is displayed or used in more than 1 page e.g Home Page and about Page then such a component needs to be extracted into this folder.
 
 > E.g A Custom `InputBox` that's used in all forms through out the project should be placed in the `global-components`. Or a React `Testimonial.tsx` section that's used in the _HomePage_ route and _AboutUsPage_ route should be placed in the `global-components` .
 
