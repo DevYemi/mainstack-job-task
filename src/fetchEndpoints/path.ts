@@ -7,8 +7,4 @@ it follows the convention E.g '/example' ---> _example
 const _wallet = "/wallet";
 const _user = "/user";
 const _transactions = "/transactions";
-export {
-    _wallet,
-    _user,
-    _transactions
-};
+export { _wallet, _user, _transactions };

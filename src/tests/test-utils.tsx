@@ -12,9 +12,7 @@ import { Providers } from "@/global-components/providers";
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <AppRouterContextProviderMock>
-      <Providers>
-        {children}
-      </Providers>
+      <Providers>{children}</Providers>
     </AppRouterContextProviderMock>
   );
 };

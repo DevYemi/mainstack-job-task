@@ -61,7 +61,7 @@ vi.stubGlobal(
     dispatchEvent: vi.fn(),
   })),
 );
-globalThis.Element.prototype.scrollTo = vi.fn(() => { });
+globalThis.Element.prototype.scrollTo = vi.fn(() => {});
 // ------- End -----------
 
 /*

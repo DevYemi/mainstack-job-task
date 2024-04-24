@@ -1,7 +1,4 @@
-
-
-
-export const fetchBaseUrl = "https://fe-task-api.mainstack.io"
+export const fetchBaseUrl = "https://fe-task-api.mainstack.io";
 
 /**
 * @Desc: This is a function that is primarily passed to `useSwr as a fetcher`.
@@ -9,7 +6,6 @@ export const fetchBaseUrl = "https://fe-task-api.mainstack.io"
 * @Params {string} api: This is the endpoint to access the route handler endpoint defined.
 */
 export async function swrFetcher<T>(api: string) {
-
   const res = await fetch(api, { method: "GET" });
 
   // Throw an error for swr to catch if there are any error from the request
@@ -23,7 +19,6 @@ export async function swrFetcher<T>(api: string) {
     );
   }
   const data: T = await res.json();
-
 
   return data;
 }
