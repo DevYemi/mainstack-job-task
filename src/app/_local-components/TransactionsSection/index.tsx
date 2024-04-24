@@ -123,14 +123,14 @@ function TransactionsSection() {
                   gap={"0.9rem"}
                 >
                   <chakra.h5 fontWeight={500} layerStyle={"base-text"}>
-                    {item?.metadata?.product_name || ""}
+                    {item?.metadata?.product_name || item?.type || ""}
                   </chakra.h5>
                   <chakra.p
                     color="gray.400"
                     fontWeight={500}
                     layerStyle={"xxs-text"}
                   >
-                    {item?.metadata?.name || ""}
+                    {item?.metadata?.name || item?.status || ""}
                   </chakra.p>
                 </chakra.div>
                 <chakra.div

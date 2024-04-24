@@ -1,19 +1,32 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Icon, Skeleton, chakra } from "@chakra-ui/react";
 import { CiCircleInfo } from "react-icons/ci";
 import useSWR from "swr";
 import { formatDigit } from "@/utils/formatInteger";
 import WalletGraphSection from "./WalletGraphSection";
-import { fetchBaseUrl, swrFetcher } from "@/fetchEndpoints/clientBaseApi";
+import {
+  fetchBaseUrl,
+  parseClientError,
+  swrFetcher,
+} from "@/fetchEndpoints/clientBaseApi";
 import { _wallet } from "@/fetchEndpoints/path";
 import { WalletDetailsDataType } from "@/fetchEndpoints/types";
+import generateToast from "@/utils/generateToast";
 
 function WalletsStatsSections() {
   const { isLoading, data, error } = useSWR<WalletDetailsDataType>(
     `${fetchBaseUrl}${_wallet}`,
     swrFetcher,
   );
+
+  useEffect(() => {
+    // Display toast if there are any errors
+    if (error) {
+      const e = parseClientError(error);
+      generateToast(e);
+    }
+  }, [error]);
 
   return (
     <chakra.section display={"flex"} gap={"12.4rem"}>

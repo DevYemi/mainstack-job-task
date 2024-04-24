@@ -2,6 +2,7 @@ export const fetchBaseUrl = "https://fe-task-api.mainstack.io";
 
 /**
 * @Desc: This is a function that is primarily passed to `useSwr as a fetcher`.
+* Used for GET requests
 
 * @Params {string} api: This is the endpoint to access the route handler endpoint defined.
 */
@@ -30,6 +31,7 @@ export type SwrMutationFetcherArgType<T = unknown> = {
 
 /**
 * @Desc: This is a function that is primarily passed to `useSWRMutation as a fetcher`.
+* Used for mutations and update (POST,PATCH,DELETE) requests
 
 * @Params {string} api: This is the endpoint to access the route handler endpoint defined.
 * @Params {SwrMutationFetcherArgType} arg: Extra data passed to help customize the request.

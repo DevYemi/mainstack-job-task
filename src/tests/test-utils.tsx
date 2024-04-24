@@ -4,7 +4,7 @@ import { AppRouterContextProviderMock } from "./NextAppRouterContextProviderMock
 import { Providers } from "@/global-components/providers";
 
 /**
- * Desc: A custom Provider that helps as a wrapper with all the necessary providers when the component  is being rendered.
+ * @description A custom Provider that helps as a wrapper with all the necessary providers when the component  is being rendered.
  *
  *  For better understanding as to why this was done find usefull links below:
  * @{@link https://testing-library.com/docs/react-testing-library/setup#custom-render RTL docs on this topic}

@@ -11,7 +11,7 @@ export type AppRouterContextProviderMockProps = {
 };
 
 /**
- * Desc: A Provider that helps mocked context for nextjs `useRouter` imported from "next/navigation"
+ * @description A Provider that helps mocked context for nextjs `useRouter` imported from "next/navigation"
  *
  * For better understanding as to why this was done find usefull links below:
  * @{@link https://nextjs.org/docs/messages/next-router-not-mounted NextJs docs explaining the issue this fixes}

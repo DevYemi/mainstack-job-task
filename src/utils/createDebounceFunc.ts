@@ -1,5 +1,5 @@
 /**
- * @Desc: Creates and returns a debounced function.
+ * @description Creates and returns a debounced function.
  *
  * @Params {function} cb: Function that will be called when the deplay timesout.
  * @Params {number} delay: delay passed to setTimeout.

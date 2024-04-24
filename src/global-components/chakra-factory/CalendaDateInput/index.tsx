@@ -34,6 +34,13 @@ Making Typescript complain
 */
 const NineTailsDayPicker: any = chakra(DayPicker);
 
+/**
+ * @description A CalendarInput picker using `react-day-picker` internally and chakra-ui `Popover` component
+ *
+ * @props
+ * @param label Any ReactNode can be passed.
+ * @param matchWidthRef Ref element you want the dropdown popover width to match
+ * */
 function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
   const [selected, setSelected] = React.useState<Date>();
   const daypickerStyles = useMultiStyleConfig("ReactDayPicker");

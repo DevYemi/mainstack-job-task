@@ -6,6 +6,12 @@ interface propTypes {
   label?: ReactNode;
 }
 
+/**
+ * @description A DateRangeInput picker using `CalendaDateInput` internally.
+ *
+ * @props
+ * @param label Any ReactNode can be passed.
+ * */
 function DateRangeInput({ label }: propTypes) {
   const ref = useRef<HTMLElement | undefined>(undefined);
   return (

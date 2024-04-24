@@ -1,11 +1,5 @@
 import React, { ComponentPropsWithRef } from "react";
-import {
-  Icon,
-  Input,
-  InputGroup,
-  InputRightElement,
-  chakra,
-} from "@chakra-ui/react";
+import { Icon, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { IoIosArrowDown } from "react-icons/io";
 
 interface propTypes {
@@ -15,6 +9,15 @@ interface propTypes {
   inputRightElement?: ComponentPropsWithRef<typeof InputRightElement>;
 }
 
+/**
+ * @description A ReadOnlyInput thats meant to only display input, meant to be used with a dropdown `Popover` component.
+ *
+ * @props
+ * @param isOpen If the dropdown `Popover` is currently opened
+ * @param inputProps Same props that can be passed to a chakra-ui Input
+ * @param inputGroupProps Same props that can be passed to a chakra-ui InputGroup
+ * @param inputRightElement Same props that can be passed to a chakra-ui InputRightElement
+ * */
 function ReadOnlyInput({
   isOpen = false,
   inputGroupProps,

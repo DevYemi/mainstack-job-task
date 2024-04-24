@@ -4,21 +4,17 @@ import React, {
   ReactNode,
   useCallback,
   useId,
-  useMemo,
-  useRef,
   useState,
 } from "react";
 import {
   Checkbox,
   CheckboxGroup,
-  Icon,
   Popover,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
   Stack,
   chakra,
-  useOutsideClick,
 } from "@chakra-ui/react";
 import ReadOnlyInput from "../ReadOnlyInput";
 import { useDisclosure } from "@chakra-ui/react";
@@ -28,6 +24,13 @@ interface propTypes extends ComponentPropsWithRef<typeof ReadOnlyInput> {
   checkLists: Array<{ value: string; defaultValue?: boolean; id: string }>;
 }
 
+/**
+ * @description A combobox thats meant to act as a checkbox selectors.
+ *
+ * @props
+ * @param label Any ReactNode value can be passed
+ * @param checkLists Array of checkbox data to be displayed in the dropdown menu `Popover`
+ * */
 function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const htmlId = useId();
@@ -62,7 +65,6 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
   return (
     <Popover
       placement="bottom-start"
-      // isOpen={isOpen}
       onClose={onClose}
       onOpen={onOpen}
       matchWidth
@@ -72,7 +74,6 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
         <chakra.div
           data-testid="selectByCheckboxInputWrapper"
           w={"100%"}
-          // onClick={onOpen}
           display={"flex"}
           flexDirection={"column"}
           gap={"1.2rem"}
@@ -117,7 +118,7 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
         >
           <CheckboxGroup defaultValue={checkedListValues}>
             <Stack spacing={"0"} direction={"column"}>
-              {checkLists.map((item, i) => (
+              {checkLists.map((item) => (
                 <Checkbox
                   key={item.id}
                   value={item.value}

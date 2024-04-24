@@ -1,8 +1,7 @@
 import { ToastOptions } from "react-toastify";
 
-/* 
-
-This Helper function lazy loads toast function and
+/**  
+@description This Helper function lazy loads toast function and
 pops an error message base on the error statusCode
 
 */
