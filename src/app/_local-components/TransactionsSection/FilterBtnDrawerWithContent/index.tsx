@@ -183,7 +183,7 @@ function FilterBtnDrawerWithContent() {
             alignItems={"center"}
             p="0"
           >
-            <Button size={"_md"} flex={"1"} variant="outline">
+            <Button onClick={onClose} size={"_md"} flex={"1"} variant="outline">
               Clear
             </Button>
             <Button disabled size={"_md"} flex={"1"}>
