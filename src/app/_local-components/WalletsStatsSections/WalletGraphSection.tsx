@@ -43,19 +43,18 @@ function WalletGraphSection() {
       <chakra.div>
         <chakra.div position={"relative"} color={"#DBDEE5"}>
           <Icon
-            transform={"translate(-50%, -45%)"}
             position={"absolute"}
-            top={0}
-            left={0}
+            top={"-4.5px"}
+            left={"-4.5px"}
             w={"1rem"}
             h={"1rem"}
             as={GoDotFill}
           />
           <chakra.hr w="100%" height={"0.2rem"} />
           <Icon
-            transform={"translate(30%, -82%)"}
             position={"absolute"}
-            right={0}
+            top={"-4.5px"}
+            right={"-4.5px"}
             w={"1rem"}
             h={"1rem"}
             as={GoDotFill}
