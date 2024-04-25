@@ -46,7 +46,8 @@ function FilterBtnDrawerWithContent() {
     return [null, null];
   }, [globaFilterState.dateRange]);
 
-  console.log(isApplyBtnDisabled);
+  console.log(globaFilterState);
+  console.log("localState:", { transType, transStatus });
 
   const filterTimelines = useMemo(
     () => [
@@ -129,12 +130,15 @@ function FilterBtnDrawerWithContent() {
   const onCloseWrapper = () => {
     onClose();
     setIsApplyBtnDisabled(true);
+    setDateRange(null);
+    setTransStatus(null);
+    setTransType(null);
   };
 
   const handleOnClear = () => {
     dispatch(
       updateRevenueTransFilterState({
-        ...globaFilterState,
+        numOfActiveFilter: 0,
         dateRange: null,
         transStatus: null,
         transType: null,
@@ -145,7 +149,7 @@ function FilterBtnDrawerWithContent() {
   const handleOnApply = () => {
     dispatch(
       updateRevenueTransFilterState({
-        ...globaFilterState,
+        numOfActiveFilter: 0,
         dateRange,
         transStatus,
         transType,
