@@ -37,6 +37,8 @@ npm run test
 
 > Webpage App is mobile responsive too.
 
+> The Filter Drawer feature works and is persisted with global state (redux-toolkit) but the transactions are not filtered cause the endpoint provided didn't have that functionality implemented, so this particular feature it was left undone.
+
 <br />
 <br />
 
