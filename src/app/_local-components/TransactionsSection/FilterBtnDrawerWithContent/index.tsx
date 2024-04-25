@@ -27,6 +27,7 @@ function FilterBtnDrawerWithContent() {
   const globaFilterState = useAppSelector(
     (state) => state.revenueTransFilterSlice,
   );
+
   const [dateRange, setDateRange] = useState<[string, string] | null>(null);
   const [transType, setTransType] = useState<Array<string> | null>(null);
   const [transStatus, setTransStatus] = useState<Array<string> | null>(null);
@@ -45,9 +46,6 @@ function FilterBtnDrawerWithContent() {
 
     return [null, null];
   }, [globaFilterState.dateRange]);
-
-  console.log(globaFilterState);
-  console.log("localState:", { transType, transStatus });
 
   const filterTimelines = useMemo(
     () => [
@@ -127,15 +125,27 @@ function FilterBtnDrawerWithContent() {
     return localFilter;
   }, [globaFilterState.transStatus]);
 
-  const onCloseWrapper = () => {
+  const onOpenWrapper = useCallback(() => {
+    setDateRange(globaFilterState?.dateRange || null);
+    setTransStatus(globaFilterState?.transStatus || null);
+    setTransType(globaFilterState?.transType || null);
+    onOpen();
+  }, [
+    globaFilterState?.dateRange,
+    globaFilterState?.transStatus,
+    globaFilterState?.transType,
+    onOpen,
+  ]);
+
+  const onCloseWrapper = useCallback(() => {
     onClose();
     setIsApplyBtnDisabled(true);
     setDateRange(null);
     setTransStatus(null);
     setTransType(null);
-  };
+  }, [onClose]);
 
-  const handleOnClear = () => {
+  const handleOnClear = useCallback(() => {
     dispatch(
       updateRevenueTransFilterState({
         numOfActiveFilter: 0,
@@ -145,8 +155,8 @@ function FilterBtnDrawerWithContent() {
       }),
     );
     onCloseWrapper();
-  };
-  const handleOnApply = () => {
+  }, [dispatch, onCloseWrapper]);
+  const handleOnApply = useCallback(() => {
     dispatch(
       updateRevenueTransFilterState({
         numOfActiveFilter: 0,
@@ -156,7 +166,7 @@ function FilterBtnDrawerWithContent() {
       }),
     );
     onCloseWrapper();
-  };
+  }, [dateRange, dispatch, onCloseWrapper, transStatus, transType]);
 
   const handleDateRangeChange = useCallback((dates: [Date, Date] | null) => {
     if (dates) {
@@ -180,7 +190,7 @@ function FilterBtnDrawerWithContent() {
     <>
       <Button
         data-testid="filterBtnDrawerTrigger-testid"
-        onClick={onOpen}
+        onClick={onOpenWrapper}
         ref={btnRef as any}
         size={"_md"}
         display={"flex"}
