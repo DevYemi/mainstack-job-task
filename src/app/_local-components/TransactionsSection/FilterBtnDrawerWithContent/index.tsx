@@ -1,5 +1,5 @@
 import { Button, Input, useDisclosure } from "@chakra-ui/react";
-import React, { useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import {
   Drawer,
@@ -14,10 +14,30 @@ import {
 import { nanoid } from "nanoid";
 import DateRangeInput from "@/global-components/chakra-factory/DateRangeInput";
 import SelectByCheckboxInput from "@/global-components/chakra-factory/SelectByCheckboxInput";
+import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
+import { updateRevenueTransFilterState } from "@/lib/redux-toolkit/features/revenueTransFilterSlice";
 
 function FilterBtnDrawerWithContent() {
+  const globaFilterState = useAppSelector(
+    (state) => state.revenueTransFilterSlice,
+  );
+  const [dateRange, setDateRange] = useState<[string, string] | null>(null);
+  const [transType, setTransType] = useState<Array<string> | null>(null);
+  const [transStatus, setTransStatus] = useState<Array<string> | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | undefined>();
+  const dispatch = useAppDispatch();
+
+  const dateRangeDefaultValue: [Date | null, Date | null] = useMemo(() => {
+    if (globaFilterState.dateRange) {
+      return [
+        new Date(globaFilterState.dateRange[0]),
+        new Date(globaFilterState.dateRange[1]),
+      ];
+    }
+
+    return [null, null];
+  }, [globaFilterState.dateRange]);
 
   const filterTimelines = useMemo(
     () => [
@@ -32,61 +52,108 @@ function FilterBtnDrawerWithContent() {
     [],
   );
 
-  const transTypeFilter = useMemo(
-    () => [
+  const transTypeFilter = useMemo(() => {
+    let localFilter = [
       {
         value: "Store Transactions",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Get Tipped",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Withdrawals",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Chargebacks",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Cashbacks",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Refer & Earn",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
-    ],
-    [],
-  );
-  const transStatusFilter = useMemo(
-    () => [
+    ];
+
+    localFilter = localFilter.map((item) => ({
+      ...item,
+      defaultValue: !!globaFilterState.transType?.includes(item.value),
+    }));
+    return localFilter;
+  }, [globaFilterState.transType]);
+  const transStatusFilter = useMemo(() => {
+    let localFilter = [
       {
         value: "Successful",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Pending",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
       {
         value: "Failed",
-        defaultValue: true,
+        defaultValue: false,
         id: nanoid(),
       },
-    ],
-    [],
-  );
+    ];
+    localFilter = localFilter.map((item) => ({
+      ...item,
+      defaultValue: !!globaFilterState.transStatus?.includes(item.value),
+    }));
+    return localFilter;
+  }, [globaFilterState.transStatus]);
+
+  const handleOnClear = () => {
+    dispatch(
+      updateRevenueTransFilterState({
+        ...globaFilterState,
+        dateRange: null,
+        transStatus: null,
+        transType: null,
+      }),
+    );
+    onClose();
+  };
+  const handleOnApply = () => {
+    dispatch(
+      updateRevenueTransFilterState({
+        ...globaFilterState,
+        dateRange,
+        transStatus,
+        transType,
+      }),
+    );
+    onClose();
+  };
+
+  const handleDateRangeChange = useCallback((dates: [Date, Date] | null) => {
+    if (dates) {
+      setDateRange([dates[0].toString(), dates[1].toString()]);
+    } else {
+      setDateRange(null);
+    }
+  }, []);
+  const handleTransTypeChange = useCallback((value: Array<string> | null) => {
+    setTransType(value);
+  }, []);
+  const handleTransStatusChange = useCallback((value: Array<string> | null) => {
+    setTransStatus(value);
+  }, []);
+
   return (
     <>
       <Button
@@ -94,12 +161,31 @@ function FilterBtnDrawerWithContent() {
         onClick={onOpen}
         ref={btnRef as any}
         size={"_md"}
+        display={"flex"}
+        alignItems={"center"}
+        gap={"0.4rem"}
         pl={"3rem"}
         pr={"2rem"}
         variant={"gray"}
         rightIcon={<IoIosArrowDown />}
       >
-        Filter
+        <chakra.span>Filter</chakra.span>
+        {globaFilterState?.numOfActiveFilter > 0 && (
+          <chakra.span
+            fontSize={"1.2rem"}
+            color={"white"}
+            lineHeight={"1.2rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            w="2rem"
+            h="2rem"
+            bg="primary.300"
+            rounded={"10rem"}
+          >
+            {globaFilterState?.numOfActiveFilter}
+          </chakra.span>
+        )}
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -166,12 +252,18 @@ function FilterBtnDrawerWithContent() {
                 ))}
               </chakra.div>
             </chakra.div>
-            <DateRangeInput label={"Date Range"} />
+            <DateRangeInput
+              defaultValues={dateRangeDefaultValue}
+              onDateRangeChange={handleDateRangeChange}
+              label={"Date Range"}
+            />
             <SelectByCheckboxInput
+              onSelectChange={handleTransTypeChange}
               label={"Transaction Type"}
               checkLists={transTypeFilter}
             />
             <SelectByCheckboxInput
+              onSelectChange={handleTransStatusChange}
               label={"Transaction Status"}
               checkLists={transStatusFilter}
             />
@@ -183,10 +275,15 @@ function FilterBtnDrawerWithContent() {
             alignItems={"center"}
             p="0"
           >
-            <Button onClick={onClose} size={"_md"} flex={"1"} variant="outline">
+            <Button
+              onClick={handleOnClear}
+              size={"_md"}
+              flex={"1"}
+              variant="outline"
+            >
               Clear
             </Button>
-            <Button disabled size={"_md"} flex={"1"}>
+            <Button onClick={handleOnApply} size={"_md"} flex={"1"}>
               Apply
             </Button>
           </DrawerFooter>

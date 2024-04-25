@@ -1,6 +1,6 @@
 export interface TransactionDataType {
   amount: number;
-  metadata: {
+  metadata?: {
     name: string;
     type: string;
     email: string;

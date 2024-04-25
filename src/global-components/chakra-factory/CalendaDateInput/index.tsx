@@ -2,6 +2,7 @@ import React, {
   ComponentPropsWithRef,
   MutableRefObject,
   ReactNode,
+  useCallback,
   useEffect,
   useId,
   useMemo,
@@ -26,6 +27,8 @@ import { createDebounceFunc } from "@/utils/createDebounceFunc";
 interface propTypes extends ComponentPropsWithRef<typeof ReadOnlyInput> {
   label?: ReactNode;
   matchWidthRef?: MutableRefObject<HTMLElement | undefined>;
+  onDateChange?: (date: Date) => void;
+  defaultValue?: Date | null;
 }
 
 /* 
@@ -40,9 +43,17 @@ const NineTailsDayPicker: any = chakra(DayPicker);
  * @props
  * @param label Any ReactNode can be passed.
  * @param matchWidthRef Ref element you want the dropdown popover width to match
+ * @param onDateChange callback func with new date picked by user
+ * @param defaultValue default value passed to the date picker
  * */
-function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
-  const [selected, setSelected] = React.useState<Date>();
+function CalendaDateInput({
+  label,
+  defaultValue = null,
+  onDateChange,
+  matchWidthRef,
+  ...props
+}: propTypes) {
+  const [selected, setSelected] = React.useState<Date | null>(defaultValue);
   const daypickerStyles = useMultiStyleConfig("ReactDayPicker");
   const { isOpen, onClose, onOpen } = useDisclosure();
   const theme = useTheme();
@@ -52,6 +63,16 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
   const inputValue = useMemo(
     () => (selected ? format(selected, "PP") : ""),
     [selected],
+  );
+
+  const handleOnSelect = useCallback(
+    (date: Date) => {
+      setSelected(date);
+      if (onDateChange) {
+        onDateChange(date);
+      }
+    },
+    [onDateChange],
   );
 
   useEffect(() => {
@@ -112,7 +133,8 @@ function CalendaDateInput({ label, matchWidthRef, ...props }: propTypes) {
             mode="single"
             selected={selected}
             sx={daypickerStyles}
-            onSelect={setSelected as any}
+            onSelect={handleOnSelect}
+            defaultMonth={selected}
             components={{
               IconLeft: ({ ...props }) => (
                 <Icon w={"1.4rem"} h={"1.4rem"} as={IoIosArrowBack} />

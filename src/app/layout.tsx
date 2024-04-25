@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Providers } from "@/global-components/providers";
+import { Providers } from "@/global-components/Providers";
 import degularFont from "@/lib/chakra-ui/font";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

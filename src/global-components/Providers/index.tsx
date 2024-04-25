@@ -1,13 +1,15 @@
 "use client";
 
-import { ChakraProvider } from "@chakra-ui/react";
-import { chakraUiCustomTheme } from "@/lib/chakra-ui/theme";
+import { ChakraUi } from "./ChakraUi";
+import ReduxToolkitStore from "./ReduxToolkitStore";
 
 /**
  * @description A single point of export for all the Global provider that needs to be available in client components.
  */
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ChakraProvider theme={chakraUiCustomTheme}>{children}</ChakraProvider>
+    <ReduxToolkitStore>
+      <ChakraUi>{children}</ChakraUi>
+    </ReduxToolkitStore>
   );
 }

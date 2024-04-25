@@ -105,12 +105,12 @@ function TransactionsSection() {
                 alignItems={"center"}
               >
                 <chakra.span
-                  bg={item?.status === "successful" ? "#E3FCF2" : "#F9E3E0"}
+                  bg={item?.type === "deposit" ? "#E3FCF2" : "#F9E3E0"}
                   display={"block"}
                   rounded={"10rem"}
                   p={"1.4rem"}
                 >
-                  {item.status === "successful" ? (
+                  {item.type === "deposit" ? (
                     <GoArrowDownLeft color="#075132" />
                   ) : (
                     <GoArrowUpRight color="#961100" />
@@ -124,10 +124,16 @@ function TransactionsSection() {
                   gap={"0.9rem"}
                 >
                   <chakra.h5 fontWeight={500} layerStyle={"base-text"}>
-                    {item?.metadata?.product_name || item?.type || ""}
+                    {item?.metadata?.product_name || `Cash ${item?.type}` || ""}
                   </chakra.h5>
                   <chakra.p
-                    color="gray.400"
+                    color={
+                      item?.type === "deposit"
+                        ? "gray.400"
+                        : item?.status === "successful"
+                          ? "#0EA163"
+                          : "gray.400"
+                    }
                     fontWeight={500}
                     layerStyle={"xxs-text"}
                   >

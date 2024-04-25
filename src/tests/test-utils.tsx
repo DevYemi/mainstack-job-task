@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { AppRouterContextProviderMock } from "./NextAppRouterContextProviderMock";
-import { Providers } from "@/global-components/providers";
+import { Providers } from "@/global-components/Providers";
 
 /**
  * @description A custom Provider that helps as a wrapper with all the necessary providers when the component  is being rendered.

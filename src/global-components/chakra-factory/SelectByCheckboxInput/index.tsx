@@ -22,6 +22,7 @@ import { useDisclosure } from "@chakra-ui/react";
 interface propTypes extends ComponentPropsWithRef<typeof ReadOnlyInput> {
   label?: ReactNode;
   checkLists: Array<{ value: string; defaultValue?: boolean; id: string }>;
+  onSelectChange?: (value: Array<string> | null) => void;
 }
 
 /**
@@ -30,8 +31,14 @@ interface propTypes extends ComponentPropsWithRef<typeof ReadOnlyInput> {
  * @props
  * @param label Any ReactNode value can be passed
  * @param checkLists Array of checkbox data to be displayed in the dropdown menu `Popover`
+ * @param onSelectChange callback func with value when value changes
  * */
-function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
+function SelectByCheckboxInput({
+  label,
+  onSelectChange,
+  checkLists,
+  ...props
+}: propTypes) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const htmlId = useId();
 
@@ -48,19 +55,28 @@ function SelectByCheckboxInput({ label, checkLists, ...props }: propTypes) {
     return store;
   });
 
-  const handleCheckToggle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const element = e.currentTarget;
+  const handleCheckToggle = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const element = e.currentTarget;
 
-    setCheckedListValues((prev) => {
-      let oldList = [...prev];
-      if (element?.checked) {
-        oldList.push(element?.value);
-        return oldList;
-      } else {
-        return oldList.filter((item) => item !== element?.value);
-      }
-    });
-  }, []);
+      setCheckedListValues((prev) => {
+        let newList = [...prev];
+        if (element?.checked) {
+          newList.push(element?.value);
+        } else {
+          newList = newList.filter((item) => item !== element?.value);
+        }
+
+        if (newList.length > 0) {
+          if (onSelectChange) onSelectChange(newList);
+        } else {
+          if (onSelectChange) onSelectChange(null);
+        }
+        return newList;
+      });
+    },
+    [onSelectChange],
+  );
 
   return (
     <Popover
