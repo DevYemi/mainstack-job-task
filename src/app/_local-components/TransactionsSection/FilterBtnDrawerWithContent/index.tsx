@@ -1,5 +1,11 @@
-import { Button, Input, useDisclosure } from "@chakra-ui/react";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import { Button, useDisclosure } from "@chakra-ui/react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import {
   Drawer,
@@ -24,6 +30,7 @@ function FilterBtnDrawerWithContent() {
   const [dateRange, setDateRange] = useState<[string, string] | null>(null);
   const [transType, setTransType] = useState<Array<string> | null>(null);
   const [transStatus, setTransStatus] = useState<Array<string> | null>(null);
+  const [isApplyBtnDisabled, setIsApplyBtnDisabled] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | undefined>();
   const dispatch = useAppDispatch();
@@ -38,6 +45,8 @@ function FilterBtnDrawerWithContent() {
 
     return [null, null];
   }, [globaFilterState.dateRange]);
+
+  console.log(isApplyBtnDisabled);
 
   const filterTimelines = useMemo(
     () => [
@@ -117,6 +126,11 @@ function FilterBtnDrawerWithContent() {
     return localFilter;
   }, [globaFilterState.transStatus]);
 
+  const onCloseWrapper = () => {
+    onClose();
+    setIsApplyBtnDisabled(true);
+  };
+
   const handleOnClear = () => {
     dispatch(
       updateRevenueTransFilterState({
@@ -126,7 +140,7 @@ function FilterBtnDrawerWithContent() {
         transType: null,
       }),
     );
-    onClose();
+    onCloseWrapper();
   };
   const handleOnApply = () => {
     dispatch(
@@ -137,7 +151,7 @@ function FilterBtnDrawerWithContent() {
         transType,
       }),
     );
-    onClose();
+    onCloseWrapper();
   };
 
   const handleDateRangeChange = useCallback((dates: [Date, Date] | null) => {
@@ -146,12 +160,16 @@ function FilterBtnDrawerWithContent() {
     } else {
       setDateRange(null);
     }
+
+    setIsApplyBtnDisabled(false);
   }, []);
   const handleTransTypeChange = useCallback((value: Array<string> | null) => {
     setTransType(value);
+    setIsApplyBtnDisabled(false);
   }, []);
   const handleTransStatusChange = useCallback((value: Array<string> | null) => {
     setTransStatus(value);
+    setIsApplyBtnDisabled(false);
   }, []);
 
   return (
@@ -190,7 +208,7 @@ function FilterBtnDrawerWithContent() {
       <Drawer
         isOpen={isOpen}
         placement="right"
-        onClose={onClose}
+        onClose={onCloseWrapper}
         finalFocusRef={btnRef as any}
       >
         <DrawerOverlay bg={"#e8e8e8a6"} />
@@ -283,7 +301,12 @@ function FilterBtnDrawerWithContent() {
             >
               Clear
             </Button>
-            <Button onClick={handleOnApply} size={"_md"} flex={"1"}>
+            <Button
+              onClick={handleOnApply}
+              size={"_md"}
+              flex={"1"}
+              isDisabled={isApplyBtnDisabled}
+            >
               Apply
             </Button>
           </DrawerFooter>

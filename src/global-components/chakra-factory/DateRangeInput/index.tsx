@@ -27,6 +27,7 @@ function DateRangeInput({
   defaultValues = [null, null],
   onDateRangeChange,
 }: propTypes) {
+  const isFirstRender = useRef(true);
   const ref = useRef<HTMLElement | undefined>(undefined);
   const [fromDate, setFromDate] = useState<Date | null>(defaultValues[0]);
   const [toDate, setToDate] = useState<Date | null>(defaultValues[1]);
@@ -40,12 +41,15 @@ function DateRangeInput({
 
   // Send value up to parent component
   useEffect(() => {
+    // Prevent from setting state on first render
+    if (defaultValues[0] === fromDate && defaultValues[1] === toDate) return;
+
     if (fromDate && toDate) {
       if (onDateRangeChange) onDateRangeChange([fromDate, toDate]);
     } else {
       if (onDateRangeChange) onDateRangeChange(null);
     }
-  }, [fromDate, onDateRangeChange, toDate]);
+  }, [defaultValues, fromDate, onDateRangeChange, toDate]);
 
   return (
     <chakra.div

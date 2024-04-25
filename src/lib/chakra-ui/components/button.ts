@@ -21,6 +21,10 @@ const solid = defineStyle({
   _active: {
     bg: "primary.300",
   },
+  _disabled: {
+    backgroundColor: "#DBDEE5",
+    opacity: 1,
+  },
 });
 const gray = defineStyle({
   border: "none",
